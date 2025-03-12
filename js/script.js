@@ -75,30 +75,36 @@ for (let link of links) {
 
 console.log('links:', links); // Przeniesiono poza pętlę, aby logowało się tylko raz
 
-function generateTags(){
-  /* find all articles */
-  const articles = document.querySelectorAll('.post');
-  /* START LOOP: for every article: */
+function generateTags() {
+  /* znajdź wszystkie artykuły */
+  const articles = document.querySelectorAll(optArticleSelector);
 
-    /* find tags wrapper */
+  /* dla każdego artykułu */
+  for (let article of articles) {
+    /* znajdź kontener tagów */
+    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    
+    /* stwórz zmienną html z pustym stringiem */
+    let html = '';
+    
+    /* pobierz tagi z atrybutu data-tags */
+    const articleTags = article.getAttribute('data-tags');
+    
+    /* podziel tagi na tablicę */
+    const tagsArray = articleTags.split(' ');
 
-    /* make html variable with empty string */
+    /* dla każdego tagu */
+    for (let tag of tagsArray) {
+      /* stwórz HTML dla linku tagu */
+      const linkHTML = '<li><a href="#">' + tag + '</a></li>';
+      
+      /* dodaj wygenerowany HTML do zmiennej html */
+      html += linkHTML;
+    }
 
-    /* get tags from data-tags attribute */
-
-    /* split tags into array */
-
-    /* START LOOP: for each tag */
-
-      /* generate HTML of the link */
-
-      /* add generated code to html variable */
-
-    /* END LOOP: for each tag */
-
-    /* insert HTML of all the links into the tags wrapper */
-
-  /* END LOOP: for every article: */
+    /* wstaw wygenerowane tagi do kontenera */
+    tagsWrapper.innerHTML = html;
+  }
 }
 
 generateTags();
