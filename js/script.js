@@ -77,7 +77,7 @@ console.log('links:', links); // Przeniesiono poza pętlę, aby logowało się t
 
 function generateTags(){
   /* find all articles */
-
+  const articles = document.querySelectorAll('.post');
   /* START LOOP: for every article: */
 
     /* find tags wrapper */
